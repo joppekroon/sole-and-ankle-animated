@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <span class="default-text">Sale</span>
+            <span class="hover-text">Sale</span>
+          </NavLink>
+          <NavLink href="/new">
+            <span class="default-text">New&nbsp;Releases</span>
+            <span class="hover-text">New&nbsp;Releases</span>
+          </NavLink>
+          <NavLink href="/men">
+            <span class="default-text">Men</span>
+            <span class="hover-text">Men</span>
+          </NavLink>
+          <NavLink href="/women">
+            <span class="default-text">Women</span>
+            <span class="hover-text">Women</span>
+          </NavLink>
+          <NavLink href="/kids">
+            <span class="default-text">Kids</span>
+            <span class="hover-text">Kids</span>
+          </NavLink>
+          <NavLink href="/collections">
+            <span class="default-text">Collections</span>
+            <span class="hover-text">Collections</span>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -119,10 +137,49 @@ const NavLink = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
+  
+  position: relative;
+  overflow: hidden;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+  
+  & .default-text,
+  & .hover-text {
+    display: block;
+    
+    width: 100%;
+    height: 100%;
+    
+    will-change: transform;
+    transition: transform 500ms;
+    transform: translateY(var(--translate-from));
+  }
+  
+  & .default-text {
+    --translate-from: 0%;
+    --translate-to: -100%;
+    
+    font-weight: ${WEIGHTS.medium};
+  }
+  & .hover-text {
+    --translate-from: 100%;
+    --translate-to: 0%;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    font-weight: ${WEIGHTS.bold};
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover .default-text,
+    &:hover .hover-text {
+      transform: translateY(var(--translate-to));
+      transition-duration: 250ms;
+    }
   }
 `;
 
