@@ -74,7 +74,6 @@ const Backdrop = styled.div`
   inset: 0;
   
   background: var(--color-backdrop);
-  z-index: -1;
   
   @media (prefers-reduced-motion: no-preference) {
     animation: ${fadeIn} 350ms;
@@ -82,6 +81,8 @@ const Backdrop = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  position: relative;
+
   background: white;
   width: 300px;
   height: 100%;
